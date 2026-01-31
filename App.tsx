@@ -110,41 +110,30 @@ const App: React.FC = () => {
     setResponses(newResponses);
 
     if (currentTrialIdx < TRIALS.length - 1) {
-      const nextTrial = TRIALS[currentTrialIdx + 1];
-      if (nextTrial.startingLocation !== currentTrial.startingLocation) {
-        setStep(AppStep.TRANSITION);
-      } else {
-        setCurrentTrialIdx(prev => prev + 1);
-        setCurrentAngle(0);
-        setHasInteracted(false);
-      }
+      // No transition screen needed: proceed directly to the next trial.
+      setCurrentTrialIdx(prev => prev + 1);
+      setCurrentAngle(0);
+      setHasInteracted(false);
     } else {
       setStep(AppStep.SUMMARY);
     }
   };
 
-  const proceedFromTransition = () => {
-    setCurrentTrialIdx(prev => prev + 1);
-    setCurrentAngle(0);
-    setHasInteracted(false);
-    setStep(AppStep.TRIAL);
-  };
-
   const renderResumePrompt = () => (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-indigo-50 overflow-hidden">
-      <div className="max-w-md w-full text-center bg-white p-10 rounded-3xl shadow-2xl">
-        <h2 className="text-3xl font-black text-gray-900 mb-4 tracking-tighter uppercase">Resume Task?</h2>
-        <p className="text-gray-600 mb-10">We found existing progress for a participant. Would you like to continue or start fresh?</p>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-white overflow-hidden">
+      <div className="max-w-md w-full text-center bg-white p-10 rounded-3xl shadow-2xl border border-black/10">
+        <h2 className="text-3xl font-black text-black mb-4 tracking-tighter uppercase">Resume Task?</h2>
+        <p className="text-black/70 mb-10">We found existing progress for a participant. Would you like to continue or start fresh?</p>
         <div className="flex flex-col gap-4">
           <button
             onClick={resumeExperiment}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-5 px-8 rounded-2xl text-xl transition-all shadow-lg active:scale-95"
+            className="bg-black hover:bg-black/90 text-white font-bold py-5 px-8 rounded-2xl text-xl transition-all shadow-lg active:scale-95"
           >
             Resume Progress
           </button>
           <button
             onClick={startNewExperiment}
-            className="bg-white hover:bg-gray-50 text-gray-500 font-bold py-5 px-8 rounded-2xl text-xl border border-gray-200 transition-all active:scale-95"
+            className="bg-white hover:bg-black/5 text-black font-bold py-5 px-8 rounded-2xl text-xl border border-black/20 transition-all active:scale-95"
           >
             Start New Experiment
           </button>
@@ -156,11 +145,11 @@ const App: React.FC = () => {
   const renderIntro = () => (
     <div className="min-h-screen flex items-center justify-center p-6 bg-white overflow-hidden">
       <div className="max-w-2xl w-full text-center">
-        <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Campus Knowledge Pointing Task</h1>
+        <h1 className="text-4xl md:text-5xl font-black text-black mb-6 uppercase tracking-tighter">Campus Knowledge Pointing Task</h1>
         
         <form onSubmit={startPractice} className="mb-12">
           <div className="flex flex-col items-center gap-4">
-            <label htmlFor="participantId" className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+            <label htmlFor="participantId" className="text-sm font-bold text-black/60 uppercase tracking-widest">
               Enter Participant ID
             </label>
             <input
@@ -170,18 +159,18 @@ const App: React.FC = () => {
               value={participantId}
               onChange={(e) => setParticipantId(e.target.value.toUpperCase())}
               placeholder="e.g. SUB_001"
-              className="w-full max-w-sm text-center text-2xl font-black py-4 px-6 border-b-4 border-indigo-100 focus:border-indigo-600 outline-none transition-colors uppercase"
+              className="w-full max-w-sm text-center text-2xl font-black py-4 px-6 border-b-4 border-black/10 focus:border-black outline-none transition-colors uppercase"
               required
             />
           </div>
 
-          <p className="text-lg text-gray-500 mt-12 mb-12 leading-relaxed max-w-lg mx-auto">
-            The **center** label is where you are standing. The **top** label is the landmark you are facing (defines “up”). Drag the arm to indicate the direction of the target landmark shown above the circle.
+          <p className="text-lg text-black/70 mt-12 mb-12 leading-relaxed max-w-lg mx-auto">
+            The label in the <span className="font-bold">center</span> is where you are standing. The label at the <span className="font-bold">top</span> is the landmark you are facing (defines “up”). Drag the arm to indicate the direction of the target landmark shown above the circle.
           </p>
 
           <button
             type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 px-16 rounded-3xl text-2xl transition-all transform active:scale-95 shadow-2xl shadow-indigo-200"
+            className="bg-black hover:bg-black/90 text-white font-bold py-6 px-16 rounded-3xl text-2xl transition-all transform active:scale-95 shadow-2xl"
           >
             Start Experiment
           </button>
@@ -194,7 +183,7 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col p-6 bg-white overflow-hidden">
       <div className="flex flex-col items-center pt-4">
         <div className="mb-2">
-           <span className="text-orange-500 font-bold uppercase tracking-widest text-sm">Practice {currentPracticeIdx + 1} of {PRACTICE_COUNT}</span>
+           <span className="text-black font-bold uppercase tracking-widest text-sm">Practice {currentPracticeIdx + 1} of {PRACTICE_COUNT}</span>
         </div>
         
          <PointingCircle
@@ -213,7 +202,7 @@ const App: React.FC = () => {
           disabled={!hasInteracted}
           className={`w-full font-bold py-5 px-10 rounded-2xl text-xl transition-all shadow-xl active:scale-95 ${
             hasInteracted 
-              ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-orange-100' 
+              ? 'bg-black hover:bg-black/90 text-white' 
               : 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
           }`}
         >
@@ -246,7 +235,7 @@ const App: React.FC = () => {
             disabled={!hasInteracted}
             className={`w-full font-bold py-5 px-10 rounded-2xl text-xl transition-all shadow-xl active:scale-95 ${
               hasInteracted 
-                ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-100' 
+                ? 'bg-black hover:bg-black/90 text-white' 
                 : 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
             }`}
           >
@@ -256,20 +245,6 @@ const App: React.FC = () => {
       </div>
     );
   };
-
-  const renderTransition = () => (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-white">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-400 mb-12 uppercase tracking-widest">Move to New Location</h2>
-        <button
-          onClick={proceedFromTransition}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 px-16 rounded-3xl text-2xl transition-all transform active:scale-95 shadow-2xl shadow-indigo-200"
-        >
-          I am in position
-        </button>
-      </div>
-    </div>
-  );
 
   const renderSummary = () => (
     <div className="min-h-screen bg-white overflow-y-auto">
@@ -286,7 +261,6 @@ const App: React.FC = () => {
     case AppStep.INTRO: return renderIntro();
     case AppStep.PRACTICE: return renderPractice();
     case AppStep.TRIAL: return renderTrial();
-    case AppStep.TRANSITION: return renderTransition();
     case AppStep.SUMMARY: return renderSummary();
     default: return null;
   }

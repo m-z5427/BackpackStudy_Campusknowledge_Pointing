@@ -71,8 +71,8 @@ const PointingCircle: React.FC<PointingCircleProps> = ({
       <div className="mb-6 text-center h-20 flex flex-col justify-center">
         {targetLabel && (
           <div className="flex flex-col items-center gap-1">
-            <span className="text-gray-400 font-bold uppercase tracking-tight text-xs md:text-sm">Target:</span>
-            <span className="text-2xl md:text-3xl font-black text-indigo-600 uppercase tracking-wide">
+            <span className="text-black font-bold uppercase tracking-tight text-xs md:text-sm">Target:</span>
+            <span className="text-2xl md:text-3xl font-black text-black uppercase tracking-wide">
               {targetLabel}
             </span>
           </div>
@@ -94,7 +94,7 @@ const PointingCircle: React.FC<PointingCircleProps> = ({
             cy={centerY}
             r={radius}
             fill="none"
-            stroke="#f1f5f9"
+            stroke="#000000"
             strokeWidth={strokeWidth}
           />
 
@@ -103,9 +103,10 @@ const PointingCircle: React.FC<PointingCircleProps> = ({
             y1={centerY}
             x2={centerX}
             y2={centerY - radius}
-            stroke="#cbd5e1"
+            stroke="#000000"
             strokeWidth={2}
             strokeDasharray="4 4"
+            opacity={0.25}
           />
           
           <line
@@ -113,24 +114,24 @@ const PointingCircle: React.FC<PointingCircleProps> = ({
             y1={centerY}
             x2={armX}
             y2={armY}
-            stroke="#4f46e5"
-            strokeWidth={8}
+            stroke="#000000"
+            strokeWidth={7}
             strokeLinecap="round"
           />
           
           <g transform={`rotate(${currentAngle}, ${armX}, ${armY})`}>
              <path
               d={`M ${armX - 14} ${armY + 22} L ${armX} ${armY} L ${armX + 14} ${armY + 22}`}
-              fill="#4f46e5"
+              fill="#000000"
             />
           </g>
 
-          <circle cx={centerX} cy={centerY} r={10} fill="#1e293b" />
+          <circle cx={centerX} cy={centerY} r={9} fill="#000000" />
         </svg>
 
         {facingLabel && (
           <div 
-            className="absolute left-1/2 top-[10px] -translate-x-1/2 -translate-y-1/2 bg-slate-700 text-white px-5 py-2 rounded-xl text-base md:text-lg font-black shadow-lg whitespace-nowrap z-10 border-2 border-white"
+            className="absolute left-1/2 top-[10px] -translate-x-1/2 -translate-y-1/2 text-black text-base md:text-lg font-semibold whitespace-nowrap z-10"
           >
             {facingLabel}
           </div>
@@ -138,7 +139,7 @@ const PointingCircle: React.FC<PointingCircleProps> = ({
 
         {startingLabel && (
           <div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white px-5 py-2 rounded-xl text-base md:text-lg font-black shadow-lg whitespace-nowrap z-10 border-2 border-white"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-black text-base md:text-lg font-semibold whitespace-nowrap z-10"
           >
             {startingLabel}
           </div>
