@@ -139,7 +139,7 @@ const PointingCircle: React.FC<PointingCircleProps> = ({
 
         {startingLabel && (
           <div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[40%] text-black text-base md:text-lg font-semibold whitespace-nowrap z-10"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[70%] text-black text-base md:text-lg font-semibold whitespace-nowrap z-10"
           >
             {startingLabel}
           </div>
