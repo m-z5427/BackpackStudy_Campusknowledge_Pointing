@@ -1,0 +1,8 @@
+{
+  "name": "BackpackStudy_PointingTask",
+  "description": "Used to do onsite pointing trials in campus environment, and a measure of configural knowledge.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
