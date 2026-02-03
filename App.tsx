@@ -165,7 +165,7 @@ const App: React.FC = () => {
           </div>
 
           <p className="text-lg text-black/70 mt-12 mb-12 leading-relaxed max-w-lg mx-auto">
-            The label in the <span className="font-bold">center</span> is where you are standing. The label at the <span className="font-bold">top</span> is the landmark you are facing (defines “up”). Drag the arm to indicate the direction of the target landmark shown above the circle.
+            The label in the <span className="font-bold">center of the circle</span> is the landmark you are imagined standing at. The label at the <span className="font-bold">top of the circle</span> is the landmark you are imagined facing to. Drag the arm of the circle to indicate the direction of the target landmark shown above the circle.
           </p>
 
           <button
